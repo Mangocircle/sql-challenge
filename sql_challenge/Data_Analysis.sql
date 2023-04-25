@@ -1,41 +1,41 @@
-select e.emp_no, e.first_name, e.last_name,e.sex,s.salary
-from employees as e
-left join salaries as s
-on (e.emp_no=s.emp_no)
-order by e.emp_no;
+select emp.emp_no, emp.first_name, emp.last_name,emp.sex,sal.salary
+from employees as emp
+left join salaries as sal
+on (emp.emp_no=sal.emp_no)
+order by emp.emp_no;
 
-select e.first_name, e.last_name, e.hire_date
-from employees as e
+select emp.first_name, emp.last_name, emp.hire_date
+from employees as emp
 where hire_date between '1986-01-01' and '1986-12-31' ;
 
-select d.dep_no, d.dept_name, e.emp_no, e.last_name, e.first_name
-from departments d
+select dep.dep_no, dep.dept_name, emp.emp_no, emp.last_name, emp.first_name
+from departments dep
 join dept_manager dm
-	on dm.dept = d.dep_no
-join employees e
-	on e.emp_no = dm.emp_no;
+	on dm.dept = dep.dep_no
+join employees emp
+	on emp.emp_no = dm.emp_no;
 
-select d.dep_no, d.dept_name, e.emp_no, e.last_name, e.first_name
-from departments d
+select dep.dep_no, dep.dept_name, emp.emp_no, emp.last_name, emp.first_name
+from departments dep
 join dept_emp de
-	on de.dept_no = d.dep_no
-join employees e
-	on e.emp_no = de.emp_no;
+	on de.dept_no = dep.dep_no
+join employees emp
+	on emp.emp_no = de.emp_no;
 	
 select first_name, last_name, sex
 from EMPLOYEES
 where first_name = 'Hercules' 
 	and last_name like 'B%';
 
-select e.emp_no, e.last_name, e.first_name, d.dept_name
-from employees e
+select emp.emp_no, emp.last_name, emp.first_name, dep.dept_name
+from employees emp
 join dept_emp de
-	on e.emp_no = de.emp_no
-join departments d
-	on d.dep_no = de.dept_no
+	on emp.emp_no = de.emp_no
+join departments dep
+	on dep.dep_no = de.dept_no
 where
-	d.dept_name = 'Sales'
-	OR d.dept_name = 'Development';
+	dep.dept_name = 'Sales'
+	OR dep.dept_name = 'Development';
 
 select last_name, count(last_name) as Frequency 
 from employees 
